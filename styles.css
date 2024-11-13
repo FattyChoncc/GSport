@@ -1,0 +1,1303 @@
+* {
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0; 
+}
+
+/*Màu gốc*/
+:root {
+    --primary-color: #007bff;
+    --secondary-color: #6c757d;
+    --background-color: linear-gradient(315deg, rgb(238, 255, 248), rgb(243, 255, 233));
+    --text-color: #333333;
+    --hover-color: #0056b3;
+    --navbar-bg: rgba(255, 255, 255, 0.8);
+    --navbar-text: #333333;
+}
+
+/*Màu theme sáng*/
+:root.theme-light {
+    --background-color: linear-gradient(315deg, rgb(238, 255, 248), rgb(238, 255, 226));
+    --text-color: #1b3a18;
+    --navbar-bg: radial-gradient(circle, rgba(12, 194, 58, 0.1) 0%, transparent 50%);
+    --navbar-text: #333333;
+    --icon-color: #007bb4;
+    --card-bg: #ffffff;
+    --dropdown-bg: rgb(243, 255, 233);
+    --signup-highlight: #1b3a18; 
+    --login-bg: linear-gradient(145deg, rgba(226, 255, 241, 0.6), rgba(167, 172, 130, 0.6));
+    --login-input: #f3f3f3;
+}
+
+/*Màu theme tối*/
+:root.theme-dark {
+    --background-color: #131313;
+    --text-color: #fdf9eb;
+    --navbar-bg: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+    --navbar-text: #ffffff;
+    --icon-color: #ffffff;
+    --card-bg: #22232b;
+    --dropdown-bg: rgb(68, 68, 68);
+    --signup-highlight: #222222;
+    --login-bg: linear-gradient(145deg, rgba(95, 89, 89, 0.6), rgba(37, 37, 30, 0.6));
+    --login-input: #fefff8;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: var(--background-color);
+    color: var(--text-color);
+}
+
+.container {    
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Ẩn thanh cuộn */
+.css_select::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+}
+
+.css_select::-webkit-scrollbar-thumb {
+    background-color: transparent;
+}
+
+/*Navbar*/
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: var(--navbar-bg);
+    backdrop-filter: blur(30px);
+    opacity: 0.9;
+    z-index: 1000;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+}
+
+a{
+    text-decoration: none;
+}
+
+.logo-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.nav-menu {
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    margin-left: 50px;
+}
+
+.nav-menu li {
+    margin: 0 15px;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: var(--text-color);
+    position: relative;
+    transition: color 0.3s;
+}
+
+.nav-menu a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--text-color);
+    transition: width 0.3s;
+}
+
+.nav-menu a:hover::after, .nav-menu a.active::after {
+    width: 100%;
+}
+
+.nav-menu a.active {
+    color: var(--text-color);
+}
+
+.nav-buttons {
+    display: flex;
+    align-items: center;
+    color: var(--text-color);
+}
+
+.theme-toggle,
+.profile-toggle,
+.menu-toggle {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin-left: 15px;
+    padding: 8px;
+    border-radius: 50%;
+    transition: background-color 0.3s;
+    color: var(--text-color);
+    transition: color 0.3s ease;
+}
+
+.theme-toggle:hover,
+.profile-toggle:hover {
+    background-color: rgba(167, 167, 167, 0.1);
+    border-radius: 10px;
+}
+
+.profile-dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 130%;
+    right: 0;
+    background-color: var(--dropdown-bg);
+    backdrop-filter: blur(50px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    list-style-type: none;
+    padding: 10px 0;
+    margin: 0;
+    display: none;
+    min-width: 150px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.dropdown-menu.show {
+    display: block;
+    animation: fadeIn 0.3s;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.pro-btn, .signin-btn, .change-password-btn{
+    color: var(--text-color);
+}
+
+.dropdown-menu a:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.signup-btn {
+    background-color: var(--signup-highlight);
+    border-radius: 5px;
+    color: #ffffff;
+}
+
+.signup-btn:hover {
+    background-color: var(--hover-color);
+}
+
+.logout-btn {
+    background-color: var(--signup-highlight);
+    border-radius: 5px;
+    color: #ffffff;
+}
+
+.logout-btn:hover {
+    background-color: var(--hover-color);
+}
+
+
+.theme-light .signup-btn:hover {
+    color: rgb(0, 0, 0); 
+}
+
+.theme-dark .signup-btn:hover {
+    color: white;
+}
+
+
+.menu-toggle {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/*Main content*/
+main {
+    height: 100%;
+    margin-top: 60px;
+    padding: 40px 0;
+}
+
+.main-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+}
+
+.text-content {
+    flex: 1;
+    max-width: 50%;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 5px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+p {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+}
+
+.cta-button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.cta-button:hover {
+    background-color: var(--hover-color);
+    transform: scale(1.1); /* Zoom hiệu ứng */
+}
+
+/*Slider*/
+.slider-container {
+    flex: 1;
+    max-width: 50%;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    aspect-ratio: 16 / 9;
+}
+
+.slider {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    height: 100%;
+}
+
+.slider img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.slider-nav button {
+    position: absolute;
+    top:50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0);
+    color: white;
+    border: none;
+    height: 100%;
+    padding: 10px 15px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.slider-nav button:hover {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.slider-nav .prev {
+    left: 0;
+}
+
+.slider-nav .next {
+    right: 0;
+}
+
+/*Gạch*/
+.section-divider {
+    margin-top: 100px;
+    width: 90%;
+    margin: 2rem auto;
+    border: 1px solid #ddd;
+}
+
+/*footer icon*/
+.icon-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5rem;
+    text-align: center;
+    margin-top: 2rem;
+    padding: 1rem 0;
+}
+
+.icon-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1.5rem;
+    color: #333;
+    transition: 0.3s ease-in-out;
+}
+
+.icon-box i {
+    font-size: 2rem;
+    color: #007bff;
+}
+
+.icon-box p {
+    margin-top: 0.5rem;
+    font-size: 1rem;
+    color: var(--text-color);
+}
+
+.icon-box:hover {
+    transform: scale(1.2); /* Tăng kích thước biểu tượng lên 20% khi hover */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Đặt sân */
+.container_booking {
+    max-width: 1200px;
+    margin: -30px auto;
+    padding: 20px;
+}
+
+/* Select */
+.css_select_div {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+}
+
+.css_select {
+    flex: 1;
+    min-width: 200px;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    appearance: none;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23888'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: var(--card-bg);
+    color: var(--text-color);
+}
+
+/* Animation for dropdown */
+@keyframes slideDown {
+from {
+    opacity: 0;
+    transform: translateY(-10px);
+}
+to {
+    opacity: 1;
+    transform: translateY(0);
+}
+}
+
+.css_select:focus + .css_select option,
+.css_select:active + .css_select option {
+    animation: slideDown 0.3s ease;
+}
+
+.css_select option:disabled {
+    color: #999999;
+}
+
+/* Cards */
+.container_card {
+    display: inline-block;
+    width: 25%; 
+    padding: 10px;
+    box-sizing: border-box;
+    text-decoration: none;
+    opacity: 0;
+    transform: translateY(40px);
+    animation: fadeInUp 0.5s ease forwards;
+}
+
+@keyframes fadeInUp {
+to {
+    opacity: 1;
+    transform: translateY(0);
+}
+}
+
+.card {
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    height: auto;
+}
+
+.container_card:hover .card {
+    transform: scale(1.09);
+}
+
+.card h1 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.card p {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.container_card:nth-child(1) { animation-delay: 0.1s; }
+.container_card:nth-child(2) { animation-delay: 0.2s; }
+.container_card:nth-child(3) { animation-delay: 0.3s; }
+.container_card:nth-child(4) { animation-delay: 0.4s; }
+.container_card:nth-child(5) { animation-delay: 0.5s; }
+.container_card:nth-child(6) { animation-delay: 0.6s; }
+.container_card:nth-child(7) { animation-delay: 0.7s; }
+.container_card:nth-child(8) { animation-delay: 0.8s; }
+  
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: -20px;
+}
+
+.pagination a {
+    display: inline-block;
+    padding: 8px 14px;
+    margin: 0px 2px;
+    background-color: rgb(171, 182, 180);
+    color: #fff;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.pagination a:hover {
+    background-color: #479;
+    transform: scale(1.1);
+}
+
+.pagination a.active {
+    background-color: rgb(3, 82, 39);
+    cursor: default;
+}
+
+.pagination a:first-child, .pagination a:last-child {
+    font-weight: bold;
+}
+
+.pagination a[disabled] {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/*Chọn sân*/
+.container_picking {
+    display: flex;
+    flex-direction: column;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 2rem;
+    padding: 1rem;
+}
+
+.left-section {
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #333;
+}
+
+.court-title {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.details {
+    margin-top: 1rem;
+    color: var(--text-color);
+}
+
+#address{
+    font-weight: bold;
+}
+
+.details p {
+    margin: 1rem 0;
+}
+
+.time-selection {
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+}
+
+.right-section p {
+    font-size: 25px;
+    font-weight: bold;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#startTime, #endTime{
+    padding: 0.8rem;
+    width: 100%;
+    border-radius: 15px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: var(--card-bg);
+    color: var(--text-color);
+}
+
+.time-selection p {
+    color: #ccc;
+}
+
+.time-inputs {
+    display: flex;
+    gap: 1rem;
+}
+
+#courtType{
+    padding: 0.8rem;
+    width: 20%;
+    border-radius: 15px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: var(--card-bg);
+    color: var(--text-color);
+}
+
+.courts-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.court-btn {
+    padding: 1rem;
+    border: none;
+    color: white;
+    cursor: pointer;
+    background-color: rgb(61, 218, 56);
+    transition: transform 0.3s ease-in-out;
+    border-radius: 45px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-size: 17px;
+}
+
+.court-btn:hover {
+    transform: scale(1.05);
+}
+
+.payment-btn {
+    padding: 1rem 2rem;
+    background: linear-gradient(90deg, #76e679, #438a47);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    transition: transform 0.3s ease-in-out;
+    font-size: 16px;
+}
+
+.payment-btn:hover{
+    transform: scale(1.05);
+}
+
+.payment-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 34, 0.2), transparent);
+    transition: 0.5s;
+}
+
+.payment-btn:hover::before {
+    left: 100%;
+}
+
+.divider {
+    border: none;
+    border-top: 1px solid #333;
+    margin: 1rem 0;
+}
+
+.court-type-selection {
+    margin-bottom: 1rem;
+}
+
+/* Button màu xanh lục khi sân còn trống */
+.court-btn.available {
+    background-color: #28a745; /* Xanh lục */
+    color: white;
+}
+
+/* Button màu đỏ khi sân đã được đặt */
+.court-btn.booked {
+    background-color: #dc3545; /* Đỏ */
+    color: white;
+    cursor: not-allowed; /* Không thể tương tác */
+}
+
+/* Thiết kế form xác nhận đặt sân */
+.court-confirmation {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: var(--card-bg);
+    margin-bottom: 20px;
+}
+
+.court-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Khoảng cách giữa các phần thông tin */
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.info-row p {
+    margin: 0;
+    font-size: 14px;
+    width: 45%; /* Chỉ định chiều rộng cho mỗi cột */
+}
+
+.info-row img {
+    width: 200px;
+    height: auto;
+}
+
+/* Điều chỉnh tiêu đề */
+h3 {
+    margin-bottom: 20px;
+    font-size: 25px;
+    font-weight: bold;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+/*ĐĂNG NHẬP - ĐĂNG KÝ*/
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.075);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.popup-content {
+    background: var(--login-bg);
+    padding: 30px;
+    width: 90%;
+    max-width: 400px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    position: relative;
+    text-align: center;
+    backdrop-filter: blur(5px);
+}
+
+/* Title of the form */
+.popup-content h2 {
+    margin: 0 0 20px;
+    font-size: 1.8em;
+    color: var(--text-color);
+}
+
+/* Input container */
+.input-container {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+/* Input fields */
+.popup-content input {
+    width: 100%;
+    padding: 12px 15px 12px 40px;
+    border: 1px solid rgba(221, 221, 221, 0.5);
+    border-radius: 8px;
+    background-color: var(--login-input);
+    font-size: 1em;
+    transition: all 0.3s ease;
+}
+
+.popup-content input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+/* Icons inside input */
+.popup-content .icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #007bff;
+}
+
+/* Password toggle icon */
+.password-container {
+    position: relative;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #007bff;
+}
+
+/* Forgot Password Link */
+.forgot-password {
+    position: absolute;
+    right: 0;
+    bottom: -28px;
+    font-size: 0.85em;
+}
+
+/* Submit button */
+.popup-content button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 20px;
+    background: linear-gradient(90deg, #007bff, #00d2ff);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.popup-content button:hover::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: all 0.5s ease;
+    animation: shine 1.5s infinite;
+}
+
+@keyframes shine {
+    100% {
+        left: 100%;
+    }
+}
+
+/* Links */
+.popup-content a {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 0.9em;
+    transition: color 0.3s ease;
+}
+
+.popup-content a:hover {
+    color: #0056b3;
+}
+
+
+/* Signup Link */
+.signup-link {
+    margin-top: 20px;
+    font-size: 0.9em;
+    text-align: center;
+}
+
+.popup-content p {
+    margin: 15px 0;
+    font-size: 0.9em;
+}
+
+/* Close button */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    color: #333;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-btn:hover {
+    color: #007bff;
+}
+
+/*Thông báo*/
+.notification-container {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 1000;
+}
+
+/* Thông báo thành công */
+.success-message, .error-message {
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: #fff;
+    margin-top: 10px;
+    opacity: 0.9;
+    font-size: 14px;
+}   
+
+.success-message {
+    border: 2px solid green;
+    background-color: #8bbe5c; /* Màu xanh lá */
+}
+
+.error-message {
+    border: 2px solid red;
+    background-color: #dc3545; /* Màu đỏ */
+}
+
+/* Hiệu ứng mờ dần */
+.fade-out {
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
+}
+
+/*Lịch sử lịch đặt*/
+.container-history {
+    display: flex;
+    padding: 20px;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.left-panel {
+    flex: 1;
+    padding: 20px;
+    background: none;
+    border-radius: 8px;
+}
+
+.right-panel {
+    flex: 2;
+    padding: 20px;
+    background: var(--card-bg);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.right-panel h2{
+    margin-bottom: 10px;
+    color: var(--text-color);
+}
+
+.time-selection {
+    display: flex;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+#startTime-history, #endTime-history{
+    width: 100%;
+    width: 175px;
+    border-radius: 15px;
+    color: var(--text-color);
+    background: var(--card-bg);
+    border: none;
+    padding: 14px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+#courtType-history{
+    padding: 13px;
+    width: 49%;
+    border-radius: 15px;
+    border: none;
+    background-color: var(--card-bg);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    color: var(--text-color);
+}
+
+.booking-history {
+    width: 100%;
+    background-color: var(--card-bg);
+    max-height: 350px; 
+    overflow-y: auto; 
+}
+
+/*Ẩn thanh cuộn cho lịch sử đặt sân*/
+.booking-history::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+}
+
+.booking-history::-webkit-scrollbar-thumb {
+    background-color: transparent;
+}
+
+.booking-entry {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+}
+
+.booking-entry-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.booking-details {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    color: var(--text-color);
+    margin-bottom: -25px;
+    margin-top: -20px;
+}
+
+.booking-details p{
+    font-size: 15px;
+}
+
+.time-label {
+    font-size: 14px;
+    color: var(--text-color);
+    margin-bottom: 5px;
+}
+
+.date-selection {
+    margin-bottom: 20px;
+}
+
+.booking-entry-header p{
+    font-size: 1.3rem;
+    font-weight: bold;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#dateInput {
+    width: 100%;
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    color: var(--text-color);
+    background: var(--card-bg);
+}
+
+/* Màu cho trạng thái Đã xác nhận */
+.status-confirmed {
+    color: green;
+    font-weight: bold;
+}
+
+/* Màu cho trạng thái Đã hủy */
+.status-canceled {
+    color: red;
+    font-weight: bold;
+}
+
+/* Màu cho trạng thái Chờ xử lý */
+.status-pending {
+    color: yellow;
+    font-weight: bold;
+}
+
+/* Màu mặc định nếu không xác định trạng thái */
+.status-unknown {
+    color: gray;
+}
+
+/*Liên hệ*/
+.container_contact {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    margin-top: -30px;
+}
+
+.map-container {
+    width: 100%;
+    height: 400px;
+    margin-bottom: 2rem;
+}
+
+#map {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+}
+
+.contact-methods {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid gray;
+    padding: 30px;
+    border-radius: 20px;
+    background-color: var(--card-bg);
+    text-align: center;
+    gap: 2rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.contact-title {
+    font-size: 24px;
+    font-weight: bold;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-bottom: 0.5rem;
+}
+
+.contact-methods-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 10rem;
+    flex-wrap: wrap;
+}
+
+.contact-method {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.contact-method label {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.contact-method a {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.contact-method i {
+    transition: transform 0.3s ease-in-out;
+}
+
+.contact-method i:hover {
+    transform: scale(1.2);
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .contact-methods-wrapper {
+        flex-direction: column;
+        gap: 2rem;
+    }
+}
+
+
+/* Responsive cho màn hình nhỏ */
+@media (max-width: 768px) {
+    .container-history {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .time-selection {
+        flex-direction: row;
+        gap: 10px;
+    }
+
+    #courtType-history {
+        width: 100%; /* Chiều rộng full khi responsive */
+    }
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .nav-menu {
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background-color: var(--dropdown-bg); 
+        backdrop-filter: blur(50px);
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        display: none;
+        backdrop-filter: blur(50px);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+    }
+
+    .nav-menu.show {
+        display: flex;
+        animation: fadeIn 0.3s;
+        padding-left: 15px;
+    }
+
+    .nav-menu li {
+        margin: 10px 0;
+    }
+
+    .logo{
+        margin-left: 70px;
+    }
+
+    .menu-toggle {
+        display: block;
+        margin-left: -10px;
+        order: -1;
+    }
+
+    .main-content {
+        flex-direction: column;
+    }
+
+    .text-content,
+    .slider-container {
+        max-width: 100%;
+        text-align: center;
+    }
+
+    .icon-section {
+        flex-direction: row;
+        gap: 3rem;
+    }
+
+    .icon-box i {
+        font-size: 1.8rem;
+    }
+
+    .icon-box p {
+        font-size: 0.9rem;
+    }
+
+    .footer {
+        font-size: 0.8rem;
+    }
+
+    .container_card {
+        width: calc(50% - 20px);
+    }
+}
+
+@media (max-width: 480px) {
+    .container_card {
+        width: 100%; 
+        margin: 0px;
+        margin-bottom: 10px;
+    }
+
+    .css_select_div {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        transition: transform 0.3s ease-in-out;
+    }
+    
+    .card:hover {
+        transform: scale(0.95);
+    }
+    
+}
+
+@media (min-width: 480px) {
+    .container_picking {
+        flex-direction: row;
+        padding: 2rem;
+    }
+
+    .left-section {
+        flex: 1;
+        padding-right: 2rem;
+        padding-bottom: 0;
+        border-right: 1px solid #333;
+        border-bottom: none;
+    }
+
+    .right-section {
+        flex: 2;
+    }
+
+    .courts-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .payment-btn{
+        width: 20%;
+    }
+}
